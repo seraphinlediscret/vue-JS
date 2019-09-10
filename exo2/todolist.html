@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+    <h1>{{titre}}</h1>
+    <input type="text" placeholder="Chose à faire" style="margin-right:10px;">
+    <button @click="ajouter" style="margin-right:10px;">Ajouter</button>
+    <h1>{{liste}}</h1>
+
+        <div class="boite" style="display: flex; flex-direction:row;">
+      
+        <p v-show="fait"style="text-decoration: underline">terminé</p>
+        <p v-show="!fait">à faire</p>
+
+        <ul><li v-for="ligne in lignes" style="margin-right:10px;"><input type="checkbox" v-model="fait">{{ligne.objet}}<button @click="effacer">{{suppr}}</button></li></ul>
+            
+            </div>
+
+</div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>

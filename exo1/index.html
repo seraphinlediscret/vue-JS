@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Cours JS</title>
+</head>
+<body>
+    <div id="app">
+       <p v-show="seen">{{ message }}
+        {{prenom}}</p> 
+        <a :href="link" v-if="seen" target="_blank"><img :src="img" alt="image de plule" style="width: 15%;"></a>
+        <p v-if="user">{{droit}}</p>
+    <img :src="image" v-show="imgseen" alt="">
+        <button @click="change">changer l'image</button>
+        <a :href="step.link" v-for="step in steps"><div>{{step.text}}</div></a>
+        <p>{{mod}}</p>
+        <input type="checkbox" v-model="mess">
+        <p v-show="mess"> bip bip ?</p>
+        <p v-show="!mess">Ouaaaiiiis!</p>
+        <input type="text" v-model="messin">
+        <input type="text" v-model="messon">
+        <h3>{{formulaire}}</h3>
+        <!--/////////template///////////-->
+        <div class="container">
+            <card message="Ceci est un message important" type="alert alert-dark"></card>
+            <card message="Ceci est un message succès" type="alert alert-success"></card>
+        </div>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        Vue.component('card', {
+            template: '<div :class="type" role="alert">{{help}}{{message}}</div>',
+            props:['type','message'],
+            data:function(){
+                return{
+                    help:"Tu veux de l'aide ?"
+                }
+            }
+
+        })
+        let app = new Vue({
+            el:'#app',
+            data:{
+                message:"Bonjour je m'appelle",
+                prenom: "Yohann",
+                link:"http://seraphinlediscret.fr/yohann.greving-cv",
+                img:"plume.jpg",
+                seen: false,
+                user : true,
+                droit: "Tu as le droit de voir ce message",
+                texte: "Hello World",
+                image: "intro-bg.jpg",
+                imgseen: true,
+                mess:true,
+                messin:"name",
+                messon:"firstname",
+
+                steps:[
+                    {
+                    text: "boum",
+                    link:"https://google.fr"
+            
+                    },
+                    {
+                    text:"bim",
+                    link:"https://youtube.fr"
+                        }    
+                ],
+            },
+            methods:{
+                change:function(){
+                    this.imgseen = !this.imgseen;
+                }
+            },
+            computed:{
+                formulaire: function(){
+                    return (this.messin + " " + this.messon.toUpperCase());
+                   
+                }
+            }
+        })
+    </script>
+</body>
+</html>
